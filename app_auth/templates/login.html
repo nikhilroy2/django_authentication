@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% for m in messages %}
+                    <div class="text-center text-danger">
+                        {{m}}
+                    </div>
+                    {% endfor %}
+                    <h2 class="text-center">
+                        Login form
+                    </h2>
+                    {{form|crispy}}
+                    <br>
+                    <button type="submit" class="btn btn-primary">Login now</button>
+                    <br>
+                    <br>
+                    <a href="{% url 'register' %}" class="button btn btn-info btn-sm">Don't have account?</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

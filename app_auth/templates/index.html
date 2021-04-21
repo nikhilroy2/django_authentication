@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="shadow-3-strong rounded-5 mt-5 p-3">
+                {% for m in messages %}
+                <h1 class="text-center text-success">
+                    {{m}}
+                </h1>
+
+                {% endfor %}
+                <h2>Django Authentication</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, voluptas commodi placeat, vel
+                    eligendi earum ducimus esse consequatur eos magnam nisi illo neque dicta cupiditate pariatur non,
+                    exercitationem in corporis labore excepturi voluptate maxime! Soluta perspiciatis hic nam quo quia
+                    eius nostrum deleniti dolorum, obcaecati unde doloribus atque illo alias.
+                </p>
+
+                {% if user.is_authenticated != True %} 
+                <a href="{% url 'register' %}" class="btn btn-primary m-3">Register new account</a>
+                <a href="{% url 'login' %}" class="btn btn-primary m-3">Login Now</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="w-100 ">
+            <h3 class="text-primary text-center my-3">
+                Purchase your plan
+            </h3>
+            <h4></h4>
+        </div>
+        <div class="col">
+          <div class="card h-100 ripple">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Plan: 1</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 ripple">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/city/042.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Plan: 2</h5>
+              <p class="card-text">This is a short card.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 ripple">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/city/043.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Plan: 3</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural lead-in to
+                additional content.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 ripple">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/city/044.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Plan: 4</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {% endif %}
+</div>
+{% endblock content %}
