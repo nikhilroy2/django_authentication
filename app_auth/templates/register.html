@@ -1,22 +1,29 @@
 {% extends 'layout.html' %}
-{% load crispy_forms_tags %}
-
+{% load widget_tweaks %}
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <form action="" method="post">
+    <div class="row justify-content-center">
+        <div class="col col-md-5">
+            <form action="" method="post" class="m-3 my-5 p-3 shadow-1-strong rounded-3">
                 {% csrf_token %}
                 <h3 class="text-center">Register Form</h3>
-                {{register|crispy}}
-                <button class="btn btn-primary" type="submit">Register Now</button>
+                {% for r in register %}
+                <div class="form-group mb-2">
+                    <label for="" class="form-label">{{r.label}}</label>
+                    {{r|add_class:"form-control"}}
+                </div>
 
-                <br>
-                <br>
-                <a href="{% url 'login' %}" class="btn btn-info btn-sm">already have account?</a>
+                {% endfor %}
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-primary" type="submit">Register Now</button>
+                    <a href="{% url 'login' %}" class="btn btn-info btn-sm">already have account?</a>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
 {% endblock content %}
+
+

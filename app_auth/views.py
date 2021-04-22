@@ -3,7 +3,8 @@ from .forms import RegisterForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AnonymousUser, User
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def Index(request):
     return render(request, 'index.html')
@@ -24,7 +25,9 @@ def Register(request):
 
 
 
+
 def Login(request):
+    print(request.user)
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
@@ -37,7 +40,13 @@ def Login(request):
                 return redirect('/')
             messages.info(request, f'Login failed')
     form = AuthenticationForm()
-    return render(request, 'login.html', {"form": form})
+    
+    if request.user.is_authenticated:
+        return redirect('/')
+    else:
+        return render(request, 'login.html', {"form": form})
+        
+        
 
 
 def Logout(request):
