@@ -20,6 +20,7 @@ def Register(request):
             messages.success(request, f'You have successfully registered {username}')
             name_str= username
             return redirect('/')
+        messages.info(request, form.error_messages["password_mismatch"])
     form = RegisterForm
     return render(request, 'register.html', {"register": form})
 
@@ -27,7 +28,7 @@ def Register(request):
 
 
 def Login(request):
-    print(request.user)
+    #print(request.user)
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
@@ -38,7 +39,8 @@ def Login(request):
                 login(request, user)
                 messages.success(request, f'Welcome back {username}')
                 return redirect('/')
-            messages.info(request, f'Login failed')
+        messages.info(request, form.error_messages["invalid_login"])
+        
     form = AuthenticationForm()
     
     if request.user.is_authenticated:
