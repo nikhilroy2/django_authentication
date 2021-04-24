@@ -5,8 +5,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser, User
 from django.contrib.auth.decorators import login_required
+from .helper import PriceJson
 # Create your views here.
 def Index(request):
+    price_json = PriceJson()
+    print(price_json)
     return render(request, 'index.html')
 
 def Register(request):
